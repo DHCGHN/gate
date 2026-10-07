@@ -1,9 +1,7 @@
 name: VPN Gate Node Check
 
 on:
-  schedule:
-    - cron: '0 0 * * *'
-  workflow_dispatch: # 建议加上这个，支持手动点击触发
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -34,7 +32,7 @@ jobs:
         run: python vpngate.py
         env:
           # 已部署的检测 Worker (不要改动: 检测统一走这里)
-          CHECK_WORKER: ${{ secrets.DOMAIN }}
+          CHECK_WORKER: "https://ciallo.buttleryeath.cc.cd/check?sstp=vpn:vpn@"
           CHECK_CONCURRENCY: "32"
           CHECK_TIMEOUT: "90"
 
